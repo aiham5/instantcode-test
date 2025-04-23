@@ -12,7 +12,9 @@ export default function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/users/${id}`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_BASE}/api/users/${id}`
+        );
         setProfile(res.data);
       } catch {
         setProfile(null);
@@ -25,9 +27,12 @@ export default function Profile() {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const res = await axios.get("http://localhost:3000/api/users/me", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const res = await axios.get(
+            `${import.meta.env.VITE_API_BASE}/api/users/me`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
           setUser(res.data);
         } catch {
           setUser(null);

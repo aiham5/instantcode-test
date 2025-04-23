@@ -9,7 +9,9 @@ export default function PostCard({ post }) {
 
   const handleLike = async () => {
     try {
-      await axios.post(`http://localhost:3000/api/posts/${post.id}/like`);
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE}/api/posts/${post.id}/like`
+      );
       setLiked(!liked);
     } catch (err) {
       console.error("Error liking post:", err);
@@ -18,7 +20,9 @@ export default function PostCard({ post }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/posts/${post.id}`);
+      await axios.delete(
+        `${import.meta.env.VITE_API_BASE}/api/posts/${post.id}`
+      );
       window.location.reload();
     } catch (err) {
       console.error("Error deleting post:", err);

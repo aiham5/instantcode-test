@@ -10,11 +10,14 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/register", {
-        username,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE}/api/auth/register`,
+        {
+          username,
+          email,
+          password,
+        }
+      );
       localStorage.setItem("token", res.data.token);
       toast.success("Registered!");
       window.location.href = "/";
@@ -68,7 +71,7 @@ export default function Register() {
           </button>
         </form>
         <hr style={{ margin: "20px 0" }} />
-        <a href="http://localhost:3000/api/auth/google">
+        <a href={`${import.meta.env.VITE_API_BASE}/api/auth/google`}>
           <button style={{ width: "100%" }}>Register with Google</button>
         </a>
       </div>

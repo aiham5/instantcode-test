@@ -8,9 +8,12 @@ export default function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:3000/api/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE}/api/users`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setUsers(res.data);
     } catch (err) {
       toast.error("Failed to load users");
@@ -22,7 +25,7 @@ export default function AdminDashboard() {
 
     try {
       await axios.put(
-        `http://localhost:3000/api/users/${userId}/remove-image`,
+        `${import.meta.env.VITE_API_BASE}/api/users/${userId}/remove-image`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

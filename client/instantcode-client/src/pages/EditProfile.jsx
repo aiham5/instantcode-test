@@ -51,16 +51,19 @@ export default function EditProfile() {
 
     try {
       await axios.put(
-        "http://localhost:3000/api/users/me",
+        `${import.meta.env.VITE_API_BASE}/api/users/me`,
         { bio, image: imageUrl },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
 
-      const res = await axios.get("http://localhost:3000/api/users/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE}/api/users/me`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       toast.success("Profile updated!");
       navigate(`/profile/${res.data.id}`);
@@ -74,7 +77,7 @@ export default function EditProfile() {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://localhost:3000/api/users/me", {
+        .get(`${import.meta.env.VITE_API_BASE}/api/users/me`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

@@ -7,7 +7,7 @@ export default function RedirectProfile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/users/me", {
+      .get(`${import.meta.env.VITE_API_BASE}/api/users/me`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         withCredentials: true,
       })

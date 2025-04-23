@@ -14,7 +14,7 @@ export default function Header() {
 
     if (token) {
       axios
-        .get("http://localhost:3000/api/users/me", {
+        .get(`${import.meta.env.VITE_API_BASE}/api/users/me`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => setUser(res.data))

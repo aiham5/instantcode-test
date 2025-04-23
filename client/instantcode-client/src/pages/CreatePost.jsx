@@ -13,7 +13,7 @@ export default function CreatePost() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:3000/api/posts",
+        `${import.meta.env.VITE_API_BASE}/api/posts`,
         { image, caption },
         {
           headers: { Authorization: `Bearer ${token}` },

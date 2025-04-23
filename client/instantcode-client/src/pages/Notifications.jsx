@@ -7,7 +7,7 @@ export default function Notifications() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:3000/api/notifications", {
+      .get(`${import.meta.env.VITE_API_BASE}/api/notifications`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setList(res.data));
@@ -15,7 +15,7 @@ export default function Notifications() {
 
   const markAsRead = async (id) => {
     await axios.put(
-      `http://localhost:3000/api/notifications/${id}/read`,
+      `${import.meta.env.VITE_API_BASE}/api/notifications/${id}/read`,
       {},
       {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
